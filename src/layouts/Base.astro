@@ -1,0 +1,39 @@
+---
+const { title, description, type = 'website' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+import '../styles/global.css';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:type" content={type} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="alternate" type="application/rss+xml" title="Hasan Shahriar" href="/rss.xml" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <a class="brand" href="/">Hasan Shahriar</a>
+      <div class="tag">A founder building far from the center — essays on shipping, instinct, and the outsider's edge.</div>
+      <nav class="site">
+        <a href="/">Essays</a>
+        <a href="/about">About</a>
+        <a href="/cv">CV</a>
+        <a href="https://www.linkedin.com/in/hasan-shahriar-rhiday/">LinkedIn</a>
+      </nav>
+    </header>
+    <main><slot /></main>
+    <footer class="site">
+      <div>© {new Date().getFullYear()} Hasan Shahriar · Helsinki · <a href="/rss.xml">RSS</a></div>
+    </footer>
+  </div>
+</body>
+</html>

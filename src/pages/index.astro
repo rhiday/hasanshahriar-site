@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const pillarLabel = {
+  'outsiders-edge': "The Outsider's Edge",
+  'sent-not-saved': 'Sent, Not Saved',
+  'ai-era': 'Building in the AI Era',
+};
+const essays = (await getCollection('essays', e => !e.data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<Base title="Hasan Shahriar — Essays" description="Essays on building, shipping, and the immigrant founder's edge, from a founder in Helsinki.">
+  <ul class="essay-list">
+    {essays.map(e => (
+      <li>
+        <div class="p">{pillarLabel[e.data.pillar]}</div>
+        <a class="t" href={`/essays/${e.slug}`}>{e.data.title}</a>
+        <div class="d">{e.data.description}</div>
+      </li>
+    ))}
+  </ul>
+</Base>

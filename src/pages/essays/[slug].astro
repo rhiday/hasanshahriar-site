@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+export async function getStaticPaths() {
+  const essays = await getCollection('essays', e => !e.data.draft);
+  return essays.map(e => ({ params: { slug: e.slug }, props: { e } }));
+}
+const { e } = Astro.props;
+const { Content } = await e.render();
+const d = e.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+const url = new URL(`/essays/${e.slug}`, Astro.site).href;
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: e.data.title,
+  description: e.data.description,
+  datePublished: e.data.pubDate.toISOString(),
+  author: { '@type': 'Person', name: 'Hasan Shahriar', url: 'https://hasanshahriar.com' },
+  mainEntityOfPage: url,
+};
+---
+<Base title={`${e.data.title} — Hasan Shahriar`} description={e.data.description} type="article">
+  <article>
+    <h1>{e.data.title}</h1>
+    <div class="meta">{d}</div>
+    <Content />
+  </article>
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+</Base>
