@@ -14,8 +14,28 @@ const { Content } = await entry.render();
 const allCases = (await getCollection('cases')).sort((a, b) => a.data.order - b.data.order);
 const currentIndex = allCases.findIndex(item => item.slug === entry.slug);
 const nextCase = allCases[(currentIndex + 1) % allCases.length];
+const url = new URL(`/work/${entry.slug}/`, Astro.site).href;
+const caseLd = {
+  '@type': 'Article',
+  '@id': `${url}#case-study`,
+  headline: entry.data.title,
+  description: entry.data.summary,
+  author: { '@id': new URL('/#person', Astro.site).href },
+  mainEntityOfPage: { '@id': `${url}#webpage` },
+  about: {
+    '@type': 'Organization',
+    name: entry.data.client,
+  },
+  keywords: entry.data.disciplines.join(', '),
+  inLanguage: 'en',
+};
 ---
-<Base title={`${entry.data.client}: ${entry.data.title} — Hasan Shahriar`} description={entry.data.summary}>
+<Base
+  title={`${entry.data.client}: ${entry.data.title} — Hasan Shahriar`}
+  description={entry.data.summary}
+  type="article"
+  structuredData={[caseLd]}
+>
   <article class="case-page">
     <header class="case-hero shell">
       <a class="back-link" href="/work">← All work</a>

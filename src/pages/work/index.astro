@@ -4,7 +4,11 @@ import CaseCard from '../../components/CaseCard.astro';
 import { getCollection } from 'astro:content';
 const cases = (await getCollection('cases')).sort((a, b) => a.data.order - b.data.order);
 ---
-<Base title="Work — Hasan Shahriar" description="Selected product, AI, enterprise and client work by Hasan Shahriar.">
+<Base
+  title="Work — Hasan Shahriar"
+  description="Selected product, AI, enterprise and client work by Hasan Shahriar."
+  pageSchemaType="CollectionPage"
+>
   <header class="page-hero shell">
     <p class="eyebrow">Selected work · 2017–now</p>
     <h1>Systems I helped move from unclear to real.</h1>
@@ -12,7 +16,7 @@ const cases = (await getCollection('cases')).sort((a, b) => a.data.order - b.dat
   </header>
   <section class="section shell section--page">
     <div class="case-list">
-      {cases.map((entry, index) => <CaseCard entry={entry} index={index} />)}
+      {cases.map((entry, index) => <CaseCard entry={entry} index={index} headingLevel={2} />)}
     </div>
   </section>
 </Base>

@@ -9,22 +9,31 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 const date = entry.data.pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
-const url = new URL(`/essays/${entry.slug}`, Astro.site).href;
+const url = new URL(`/essays/${entry.slug}/`, Astro.site).href;
 const all = (await getCollection('essays', item => !item.data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const currentIndex = all.findIndex(item => item.slug === entry.slug);
 const next = all[(currentIndex + 1) % all.length];
 const ld = {
-  '@context': 'https://schema.org',
   '@type': 'BlogPosting',
+  '@id': `${url}#article`,
   headline: entry.data.title,
   description: entry.data.description,
   datePublished: entry.data.pubDate.toISOString(),
-  author: { '@type': 'Person', name: 'Hasan Shahriar', url: 'https://hasanshahriar.com' },
-  mainEntityOfPage: url,
+  author: { '@id': new URL('/#person', Astro.site).href },
+  publisher: { '@id': new URL('/#person', Astro.site).href },
+  mainEntityOfPage: { '@id': `${url}#webpage` },
+  inLanguage: 'en',
 };
 ---
-<Base title={`${entry.data.title} — Hasan Shahriar`} description={entry.data.description} type="article" bodyClass="essay-page">
+<Base
+  title={`${entry.data.title} — Hasan Shahriar`}
+  description={entry.data.description}
+  type="article"
+  bodyClass="essay-page"
+  publishedTime={entry.data.pubDate.toISOString()}
+  structuredData={[ld]}
+>
   <article class="essay">
     <header class="essay-hero shell">
       <a class="back-link" href="/essays">← All writing</a>
@@ -46,5 +55,4 @@ const ld = {
     <strong>{next.data.title}</strong>
     <Arrow />
   </a>
-  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
 </Base>

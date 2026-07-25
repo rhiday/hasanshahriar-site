@@ -10,7 +10,11 @@ const pillarLabel = {
 const essays = (await getCollection('essays', entry => !entry.data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
-<Base title="Writing — Hasan Shahriar" description="Essays on building, shipping, AI and the immigrant founder's edge.">
+<Base
+  title="Writing — Hasan Shahriar"
+  description="Essays on building, shipping, AI and the immigrant founder's edge."
+  pageSchemaType="CollectionPage"
+>
   <header class="page-hero page-hero--writing shell">
     <p class="eyebrow">Writing</p>
     <h1>Notes from the field, not the balcony.</h1>
