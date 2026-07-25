@@ -1,0 +1,6 @@
+---
+const { direction = 'right' } = Astro.props;
+---
+<svg class={`arrow arrow--${direction}`} viewBox="0 0 20 20" aria-hidden="true">
+  <path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+</svg>

@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import Arrow from '../../components/Arrow.astro';
+import { getCollection } from 'astro:content';
+const pillarLabel = {
+  'outsiders-edge': "The Outsider's Edge",
+  'sent-not-saved': 'Sent, Not Saved',
+  'ai-era': 'Building in the AI Era',
+};
+const essays = (await getCollection('essays', entry => !entry.data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<Base title="Writing — Hasan Shahriar" description="Essays on building, shipping, AI and the immigrant founder's edge.">
+  <header class="page-hero page-hero--writing shell">
+    <p class="eyebrow">Writing</p>
+    <h1>Notes from the field, not the balcony.</h1>
+    <p class="page-hero__lede">I write to understand what building is doing to me. The useful pieces become essays; the rest stay where they belong.</p>
+  </header>
+
+  <section class="section shell section--page">
+    <div class="essay-index">
+      {essays.map((entry, index) => (
+        <a class="essay-index__row" href={`/essays/${entry.slug}`}>
+          <span class="essay-index__number">{String(index + 1).padStart(2, '0')}</span>
+          <span class="essay-index__main">
+            <span class="eyebrow">{pillarLabel[entry.data.pillar]}</span>
+            <strong>{entry.data.title}</strong>
+            <span>{entry.data.description}</span>
+          </span>
+          <span class="essay-index__date">{entry.data.pubDate.getFullYear()}</span>
+          <Arrow />
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="writing-manifesto">
+    <div class="shell">
+      <p>“I can’t act on a swirl. I can act on a sentence.”</p>
+      <span>Writing is not the content layer. It is part of the operating system.</span>
+    </div>
+  </section>
+</Base>

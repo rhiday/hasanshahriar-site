@@ -1,10 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
+import Arrow from '../components/Arrow.astro';
 ---
-<Base title="CV — Hasan Shahriar" description="Full-stack founder and product builder. Helsinki.">
-  <article>
-    <h1>CV</h1>
-    <p>Full-stack founder and product builder, 8+ years. Makeshift Digital (founder), Zipli (CTO), Flowtusk. Earlier: Krusti Foodkits, TietoEVRY, Nordea.</p>
-    <p><a href="https://www.linkedin.com/in/hasan-shahriar-rhiday/">LinkedIn</a> · <a href="https://github.com/rhiday">GitHub</a></p>
-  </article>
+<Base title="CV — Hasan Shahriar" description="Product, AI and founder experience from Hasan Shahriar in Helsinki.">
+  <header class="page-hero shell">
+    <p class="eyebrow">CV</p>
+    <h1>The concise version.</h1>
+    <p class="page-hero__lede">Product builder and founder with eight years across AI products, enterprise software, consulting and B2B growth.</p>
+    <div class="hero-actions">
+      <a class="button button--dark" href="/experience">View full experience <Arrow /></a>
+      <a class="button button--line" href="mailto:hasan@hasanshahriar.com">Request a tailored CV</a>
+    </div>
+  </header>
+  <section class="section shell cv-summary">
+    <div><p class="eyebrow">Current</p><h2>Co-founder & CTO, Zipli</h2><p>AI-assisted food-surplus product in pilots with Sodexo and the City of Helsinki.</p></div>
+    <div><p class="eyebrow">Previously</p><h2>KONE · Makeshift · TietoEVRY · Nordea</h2><p>Enterprise product delivery, studio ownership, open banking and Nordic technology.</p></div>
+    <div><p class="eyebrow">Based</p><h2>Helsinki, Finland</h2><p>Open to senior product and AI roles in Helsinki and remote across Europe.</p></div>
+  </section>
 </Base>

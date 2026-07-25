@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import CaseVisual from '../../components/CaseVisual.astro';
+import Arrow from '../../components/Arrow.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('cases');
+  return entries.map(entry => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const allCases = (await getCollection('cases')).sort((a, b) => a.data.order - b.data.order);
+const currentIndex = allCases.findIndex(item => item.slug === entry.slug);
+const nextCase = allCases[(currentIndex + 1) % allCases.length];
+---
+<Base title={`${entry.data.client}: ${entry.data.title} — Hasan Shahriar`} description={entry.data.summary}>
+  <article class="case-page">
+    <header class="case-hero shell">
+      <a class="back-link" href="/work">← All work</a>
+      <p class="eyebrow">{entry.data.client} · {entry.data.year}</p>
+      <h1>{entry.data.title}</h1>
+      <p class="case-hero__summary">{entry.data.summary}</p>
+      <div class="case-meta">
+        <div><span>Role</span><strong>{entry.data.role}</strong></div>
+        <div><span>Scope</span><strong>{entry.data.disciplines.join(' · ')}</strong></div>
+        <div><span>Period</span><strong>{entry.data.year}</strong></div>
+      </div>
+    </header>
+    <div class="shell case-page__visual">
+      <CaseVisual slug={entry.slug} title={entry.data.title} client={entry.data.client} />
+    </div>
+    <div class="case-copy shell">
+      <Content />
+    </div>
+  </article>
+  <a class="next-case" href={`/work/${nextCase.slug}`}>
+    <span class="eyebrow">Next case</span>
+    <strong>{nextCase.data.client}: {nextCase.data.title}</strong>
+    <Arrow />
+  </a>
+</Base>

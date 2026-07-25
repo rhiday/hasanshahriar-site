@@ -1,29 +1,50 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Arrow from '../../components/Arrow.astro';
 import { getCollection } from 'astro:content';
 export async function getStaticPaths() {
-  const essays = await getCollection('essays', e => !e.data.draft);
-  return essays.map(e => ({ params: { slug: e.slug }, props: { e } }));
+  const essays = await getCollection('essays', entry => !entry.data.draft);
+  return essays.map(entry => ({ params: { slug: entry.slug }, props: { entry } }));
 }
-const { e } = Astro.props;
-const { Content } = await e.render();
-const d = e.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-const url = new URL(`/essays/${e.slug}`, Astro.site).href;
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const date = entry.data.pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+const url = new URL(`/essays/${entry.slug}`, Astro.site).href;
+const all = (await getCollection('essays', item => !item.data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const currentIndex = all.findIndex(item => item.slug === entry.slug);
+const next = all[(currentIndex + 1) % all.length];
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
-  headline: e.data.title,
-  description: e.data.description,
-  datePublished: e.data.pubDate.toISOString(),
+  headline: entry.data.title,
+  description: entry.data.description,
+  datePublished: entry.data.pubDate.toISOString(),
   author: { '@type': 'Person', name: 'Hasan Shahriar', url: 'https://hasanshahriar.com' },
   mainEntityOfPage: url,
 };
 ---
-<Base title={`${e.data.title} — Hasan Shahriar`} description={e.data.description} type="article">
-  <article>
-    <h1>{e.data.title}</h1>
-    <div class="meta">{d}</div>
-    <Content />
+<Base title={`${entry.data.title} — Hasan Shahriar`} description={entry.data.description} type="article" bodyClass="essay-page">
+  <article class="essay">
+    <header class="essay-hero shell">
+      <a class="back-link" href="/essays">← All writing</a>
+      <p class="eyebrow">{date}</p>
+      <h1>{entry.data.title}</h1>
+      <p class="essay-hero__description">{entry.data.description}</p>
+      <div class="essay-hero__rule"><span></span><i></i></div>
+    </header>
+    <div class="essay-body shell">
+      <aside>
+        <span>Written by Hasan Shahriar</span>
+        <span>Helsinki, Finland</span>
+      </aside>
+      <div class="essay-copy"><Content /></div>
+    </div>
   </article>
+  <a class="next-case next-case--essay" href={`/essays/${next.slug}`}>
+    <span class="eyebrow">Read next</span>
+    <strong>{next.data.title}</strong>
+    <Arrow />
+  </a>
   <script type="application/ld+json" set:html={JSON.stringify(ld)} />
 </Base>

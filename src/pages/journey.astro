@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+import Arrow from '../components/Arrow.astro';
+const stops = [
+  {
+    year: '1994–2016',
+    place: 'Dhaka',
+    title: 'The first operating system',
+    copy: 'I grew up around people who started things by moving: find the people, make the call, solve what is in front of you. I built small businesses and software before I had language for product work.',
+  },
+  {
+    year: '2016',
+    place: 'Helsinki',
+    title: 'The line ran the other way',
+    copy: 'At immigration, the Finns walked straight through while the foreigners queued—the exact inverse of Dhaka airport. Nothing about me had changed in eleven hours. Everything about my position had.',
+  },
+  {
+    year: '2017',
+    place: 'Nordea',
+    title: 'A Nordic beginning',
+    copy: 'A summer role at Nordea became the first proof that the technology career I imagined from Bangladesh could exist here. Then an unexpected LinkedIn message changed the plan again.',
+  },
+  {
+    year: '2017–2018',
+    place: 'Norway · TietoEVRY',
+    title: 'Leaving the sensible offer',
+    copy: 'I turned down a permanent role and joined an innovation team working around open banking. The work was part interface, part persuasion: helping an established institution see a new operating model.',
+  },
+  {
+    year: '2019',
+    place: 'Oulu · Makeshift',
+    title: 'The founder years begin',
+    copy: 'After the master’s degree, I started a studio. One project became another, then a client history across founders, agencies and enterprise teams. The clean job borders disappeared. I liked it that way.',
+  },
+  {
+    year: '2023–2025',
+    place: 'Helsinki · KONE',
+    title: 'Inside a global system',
+    copy: 'Enterprise work taught me that scale is often coordination wearing a technical costume. I worked across product surfaces and a custom visualisation environment connected to physical operations.',
+  },
+  {
+    year: '2025–now',
+    place: 'Helsinki · Zipli',
+    title: 'Closer to the problem',
+    copy: 'Now I lead product and engineering for a food-surplus platform built through real restaurant pilots. AI made the prototype faster. The operators made the product smarter.',
+  },
+];
+---
+<Base title="The long way here — Hasan Shahriar" description="From Dhaka to Helsinki: the work, places and reversals behind Hasan Shahriar's product career.">
+  <header class="page-hero journey-hero shell">
+    <p class="eyebrow">The long way here</p>
+    <h1>Not a straight line. Better than that.</h1>
+    <p class="page-hero__lede">A path through countries, companies and a few useful reversals. The CV version is shorter. This is the version with a pulse.</p>
+  </header>
+  <section class="journey shell">
+    {stops.map((stop, index) => (
+      <article class="journey-stop">
+        <div class="journey-stop__number">{String(index + 1).padStart(2, '0')}</div>
+        <div class="journey-stop__meta"><span>{stop.year}</span><strong>{stop.place}</strong></div>
+        <div class="journey-stop__copy"><h2>{stop.title}</h2><p>{stop.copy}</p></div>
+      </article>
+    ))}
+  </section>
+  <section class="journey-end shell">
+    <p>The next stop is still being built.</p>
+    <a class="button button--dark" href="/work">See the work <Arrow /></a>
+  </section>
+</Base>

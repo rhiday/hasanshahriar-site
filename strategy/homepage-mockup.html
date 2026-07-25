@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hasan Shahriar — homepage mockup</title>
+<style>
+  :root{
+    --ink:#1a1a1a; --muted:#6b6b6b; --line:#e6e6e2;
+    --accent:#9a3b2e; --bg:#fbfbf9; --card:#fff; --soft:#f4f2ec;
+    --maxw:46rem;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:Georgia,'Iowan Old Style','Times New Roman',serif;
+    font-size:1.12rem;line-height:1.62}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.25rem}
+  .sans{font-family:-apple-system,system-ui,sans-serif}
+  a{color:var(--accent)}
+  /* top nav */
+  header.site{padding:1.8rem 0 .6rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+  .brand{font-weight:700;text-decoration:none;color:var(--ink);font-size:1.1rem}
+  nav.site{font-family:-apple-system,system-ui,sans-serif;font-size:.92rem}
+  nav.site a{color:var(--muted);text-decoration:none;margin-left:1.1rem}
+  nav.site a:hover{color:var(--accent)}
+  /* hero */
+  .hero{display:grid;grid-template-columns:1.4fr .9fr;gap:2rem;align-items:center;padding:2.4rem 0 1.6rem;border-bottom:1px solid var(--line)}
+  .hero h1{font-size:2.15rem;line-height:1.18;letter-spacing:-.02em;margin:.2rem 0 .7rem}
+  .hero p{color:#333;margin:.6rem 0 1.1rem;font-size:1.06rem}
+  .photo{width:100%;aspect-ratio:4/5;background:linear-gradient(160deg,#e9e4da,#d8cfc0);
+    border-radius:12px;display:grid;place-items:center;color:#8a7f6c;
+    font-family:-apple-system,system-ui,sans-serif;font-size:.8rem;text-align:center;border:1px solid var(--line)}
+  .cta-row{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-top:.4rem}
+  .btn{font-family:-apple-system,system-ui,sans-serif;font-size:.95rem;font-weight:600;
+    text-decoration:none;padding:.62rem 1.1rem;border-radius:8px;display:inline-block}
+  .btn.primary{background:var(--accent);color:#fff}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .mini-form{display:flex;gap:.4rem;margin-top:.9rem;max-width:22rem}
+  .mini-form input{flex:1;padding:.6rem .7rem;border:1px solid var(--line);border-radius:8px;font-family:-apple-system,system-ui,sans-serif;font-size:.9rem;background:#fff}
+  .mini-form button{border:0;background:var(--ink);color:#fff;border-radius:8px;padding:.6rem .9rem;font-family:-apple-system,system-ui,sans-serif;font-size:.9rem;font-weight:600;cursor:pointer}
+  /* proof strip */
+  .proof{font-family:-apple-system,system-ui,sans-serif;font-size:.86rem;color:var(--muted);
+    padding:1.05rem 0;border-bottom:1px solid var(--line);text-align:center}
+  .proof b{color:var(--ink);font-weight:600}
+  .proof .sep{color:var(--line);margin:0 .5rem}
+  /* section */
+  section{padding:2.4rem 0;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:-apple-system,system-ui,sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:.7rem}
+  h2{font-size:1.5rem;letter-spacing:-.015em;margin:.1rem 0 1.1rem}
+  /* building cards */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.1rem}
+  .card h3{margin:.1rem 0 .35rem;font-size:1.12rem}
+  .card .role{font-family:-apple-system,system-ui,sans-serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+  .card p{margin:.35rem 0 0;font-size:.96rem;color:#444;line-height:1.5}
+  /* essays */
+  .essay{padding:1.05rem 0;border-bottom:1px solid var(--line)}
+  .essay:last-child{border-bottom:0}
+  .essay .p{font-family:-apple-system,system-ui,sans-serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+  .essay a.t{font-size:1.25rem;font-weight:600;color:var(--ink);text-decoration:none;display:inline-block;margin-top:.15rem}
+  .essay a.t:hover{color:var(--accent)}
+  .essay .d{color:var(--muted);font-size:.98rem;margin-top:.2rem}
+  .readall{font-family:-apple-system,system-ui,sans-serif;font-weight:600;font-size:.95rem;text-decoration:none;display:inline-block;margin-top:1.1rem}
+  /* pillars */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+  .pillar{padding:.2rem .2rem}
+  .pillar h4{margin:0 0 .3rem;font-size:1.05rem;color:var(--accent)}
+  .pillar p{margin:0;font-size:.95rem;color:#444;line-height:1.5}
+  /* timeline */
+  .time{display:flex;flex-wrap:wrap;gap:.5rem 1.3rem;font-size:1rem;color:#333}
+  .time span{position:relative;padding-left:1rem}
+  .time span:before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  /* newsletter band */
+  .news{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:1.8rem;text-align:center}
+  .news h2{margin:.1rem 0 .5rem}
+  .news p{color:#444;font-size:1rem;max-width:34rem;margin:0 auto 1.1rem}
+  .news .mini-form{margin:0 auto;max-width:24rem}
+  /* footer */
+  footer.site{font-family:-apple-system,system-ui,sans-serif;color:var(--muted);font-size:.88rem;padding:2rem 0 3rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
+  footer.site a{color:var(--muted);text-decoration:none;margin-left:1rem}
+  .note{background:#fff8f2;border:1px dashed #d8b9a8;color:#7a4a3a;border-radius:10px;
+    padding:.8rem 1rem;font-family:-apple-system,system-ui,sans-serif;font-size:.82rem;margin:1.2rem 0 0}
+  @media(max-width:680px){
+    .hero{grid-template-columns:1fr}
+    .photo{max-width:13rem;order:-1}
+    .cards,.pillars{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site">
+    <a class="brand" href="#">Hasan Shahriar</a>
+    <nav class="site">
+      <a href="#">Essays</a><a href="#">Building</a><a href="#">About</a><a href="#">CV</a><a href="#">Subscribe</a>
+    </nav>
+  </header>
+
+  <div class="note">⟡ Mockup — warm-paper theme kept, authority + personality sections added. Photo, copy, and CTA balance are all adjustable. Not yet wired to Astro.</div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Founder · Writer · Helsinki</div>
+      <h1>I build companies — and write about what building actually feels like.</h1>
+      <p>I'm Hasan, a founder and CTO in Helsinki, by way of Bangladesh. Eight years shipping product — from KONE's enterprise tools to a food-rescue platform now piloting with the City of Helsinki. This is where I think out loud about shipping over polishing, and the outsider's edge.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#">Read the essays</a>
+        <a class="btn ghost" href="#">What I'm building</a>
+      </div>
+      <form class="mini-form" onsubmit="return false">
+        <input type="email" placeholder="your@email.com" />
+        <button>Subscribe</button>
+      </form>
+    </div>
+    <div class="photo">[ your photo<br>— warm, not corporate ]</div>
+  </div>
+
+  <!-- PROOF STRIP -->
+  <div class="proof">
+    <b>Building &amp; shipped:</b>
+    Makeshift <span class="sep">·</span> Zipli <span class="sep">·</span> Flowtusk
+    <span class="sep">—</span> earlier: KONE <span class="sep">·</span> TietoEVRY <span class="sep">·</span> Nordea
+  </div>
+
+  <!-- WHAT I'M BUILDING -->
+  <section>
+    <div class="eyebrow">In the arena now</div>
+    <h2>What I'm building</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="role">Founder</div>
+        <h3>Makeshift</h3>
+        <p>Digital studio — Webflow, AI, and automation for B2B teams across the Nordics &amp; UK.</p>
+      </div>
+      <div class="card">
+        <div class="role">Co-founder / CTO</div>
+        <h3>Zipli</h3>
+        <p>Food-rescue platform. In pilots with Sodexo and the City of Helsinki.</p>
+      </div>
+      <div class="card">
+        <div class="role">Building</div>
+        <h3>Flowtusk</h3>
+        <p>Automation for Webflow — the "Zapier-for-Webflow" wedge.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED WRITING -->
+  <section>
+    <div class="eyebrow">Selected essays</div>
+    <h2>Writing</h2>
+    <div class="essay">
+      <div class="p">Sent, Not Saved</div>
+      <a class="t" href="#">Sent, Not Saved</a>
+      <div class="d">Why talented people freeze at 95%, and the only thing that ever cured it for me: the work isn't the thing you make. The work is the sending.</div>
+    </div>
+    <div class="essay">
+      <div class="p">The Outsider's Edge</div>
+      <a class="t" href="#">We Used to Just Move</a>
+      <div class="d">My uncle never wrote a business plan. He saw a thing, pulled in the people he liked, and moved.</div>
+    </div>
+    <div class="essay">
+      <div class="p">Building in the AI Era</div>
+      <a class="t" href="#">The Moat Moved</a>
+      <div class="d">When anyone can build, building stops being the moat. The value moved to distribution, trust, and being the default.</div>
+    </div>
+    <a class="readall" href="#">Read all essays →</a>
+  </section>
+
+  <!-- PILLARS -->
+  <section>
+    <div class="eyebrow">What I write about</div>
+    <h2>Three threads</h2>
+    <div class="pillars">
+      <div class="pillar">
+        <h4>The Outsider's Edge</h4>
+        <p>Building far from the center. Running two cultures at once, and the double-vision it gives you.</p>
+      </div>
+      <div class="pillar">
+        <h4>Sent, Not Saved</h4>
+        <p>The freeze, the polish trap, and shipping as the only real proof that anything is good.</p>
+      </div>
+      <div class="pillar">
+        <h4>Building in the AI Era</h4>
+        <p>What's still defensible when anyone can build — distribution, trust, taste, orchestration.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY / TIMELINE -->
+  <section>
+    <div class="eyebrow">The short version</div>
+    <h2>How I got here</h2>
+    <div class="time">
+      <span>Dhaka</span>
+      <span>Arrived in Finland, 2016</span>
+      <span>Nordea &amp; TietoEVRY</span>
+      <span>Founded Makeshift</span>
+      <span>CTO at Zipli — building in public</span>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section style="border-bottom:0">
+    <div class="news">
+      <div class="eyebrow" style="text-align:center">The newsletter</div>
+      <h2>Get the essays in your inbox</h2>
+      <p>Honest writing on building from the edge — shipping, instinct, and the outsider's advantage. No spam, no growth-hacks.</p>
+      <form class="mini-form" onsubmit="return false">
+        <input type="email" placeholder="your@email.com" />
+        <button>Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site">
+    <div>© 2026 Hasan Shahriar · Helsinki</div>
+    <div>
+      <a href="#">LinkedIn</a><a href="#">GitHub</a><a href="#">RSS</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

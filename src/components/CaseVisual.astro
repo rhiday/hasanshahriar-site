@@ -1,0 +1,62 @@
+---
+const { slug, title, client, compact = false } = Astro.props;
+---
+<div class:list={['case-visual', `case-visual--${slug}`, { 'case-visual--compact': compact }]} aria-label={`${title} project artwork`} role="img">
+  <div class="case-visual__top">
+    <span>{client}</span>
+    <span>Selected work</span>
+  </div>
+
+  {slug === 'kone' && (
+    <div class="kone-art">
+      <div class="kone-mark">KONE</div>
+      <div class="building-grid" aria-hidden="true">
+        {Array.from({ length: 20 }).map((_, i) => <i class={i === 7 || i === 14 ? 'lit' : ''}></i>)}
+      </div>
+      <div class="data-line"><span></span><span></span><span></span><span></span></div>
+      <p>Physical systems,<br/>made visible.</p>
+    </div>
+  )}
+
+  {slug === 'zipli' && (
+    <div class="zipli-art">
+      <div class="zipli-word">zipli<span>.</span></div>
+      <div class="phone phone--one">
+        <div class="phone__bar"></div>
+        <strong>Lunch service</strong>
+        <span>What was left?</span>
+        <div class="food-row"><i></i><i></i><i></i></div>
+      </div>
+      <div class="phone phone--two">
+        <span>Today</span>
+        <strong>12.4 kg</strong>
+        <div class="mini-chart"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  )}
+
+  {slug === 'arkken' && (
+    <div class="arkken-art">
+      <div class="arkken-word">ARKKEN</div>
+      <div class="quote-flow">
+        <div><span>01</span><b>Choose</b><small>product</small></div>
+        <i>→</i>
+        <div><span>02</span><b>Configure</b><small>details</small></div>
+        <i>→</i>
+        <div><span>03</span><b>Route</b><small>to sales</small></div>
+      </div>
+      <p>From a page<br/>to a revenue system.</p>
+    </div>
+  )}
+
+  {slug === 'makeshift' && (
+    <div class="makeshift-art">
+      <div class="makeshift-word">makeshift<span>®</span></div>
+      <div class="client-cloud">
+        <span>KONE</span><span>Arkken</span><span>Netguru</span><span>Yobota</span>
+        <span>Storylake</span><span>Harmonya</span><span>Taxstar</span>
+      </div>
+      <p>Small studio.<br/>Wide operating range.</p>
+    </div>
+  )}
+</div>

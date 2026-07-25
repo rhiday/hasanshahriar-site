@@ -1,20 +1,46 @@
 ---
 import Base from '../layouts/Base.astro';
+import Arrow from '../components/Arrow.astro';
 ---
-<Base title="About — Hasan Shahriar" description="A founder in Helsinki, by way of Bangladesh. Makeshift, Zipli, Flowtusk — and essays on building far from the center.">
-  <article>
-    <h1>About</h1>
+<Base title="About — Hasan Shahriar" description="Hasan Shahriar is a product builder and founder in Helsinki, by way of Bangladesh.">
+  <header class="page-hero about-hero shell">
+    <p class="eyebrow">About</p>
+    <h1>I was building long before I knew “builder” was a career.</h1>
+  </header>
 
-    <div class="video-embed">[ intro video goes here ]</div>
+  <section class="about-intro shell">
+    <div class="portrait-placeholder" aria-label="Portrait coming soon">
+      <span>Portrait<br/>coming later</span>
+      <i>Dhaka ↗ Helsinki</i>
+    </div>
+    <div class="about-intro__copy">
+      <p class="large-copy">I’m Hasan—a founder and product builder in Helsinki, by way of Bangladesh.</p>
+      <p>My uncle never wrote a business plan. He saw a thing he wanted, pulled in people he liked, and moved. As a kid I watched that work, and copied it without knowing I was copying anything.</p>
+      <p>Then I became an immigrant and picked up a second voice: the one that asks <em>lokey ki bolbe</em>—what will people say—before doing anything. A lot of my work and writing is the practice of taking the chair back from that voice.</p>
+    </div>
+  </section>
 
-    <p>I'm Hasan — a founder in Helsinki, by way of Bangladesh.</p>
+  <section class="section section--ink">
+    <div class="shell about-now">
+      <div>
+        <p class="eyebrow">Now</p>
+        <h2>I build across product, engineering and the business around them.</h2>
+      </div>
+      <div>
+        <p>At Zipli, I lead product and engineering for an AI-assisted food-surplus platform. Through Makeshift, I have worked with founders, agencies and enterprise teams across direct and partner engagements.</p>
+        <p>I’m currently looking for a senior product, AI or innovation role where hands-on range is useful and clear thinking matters more than clean job-title borders.</p>
+        <a class="button button--light" href="mailto:hasan@hasanshahriar.com">Talk about a role <Arrow /></a>
+      </div>
+    </div>
+  </section>
 
-    <p>My uncle never wrote a business plan. He saw a thing he wanted, pulled in the people he liked, and moved. As a kid I watched that work, and I copied it without knowing I was copying anything — I built things because building felt like the natural thing a person does with a day. Then I became an immigrant and picked up a second voice, the one that asks <em>lokey ki bolbe</em> — what will people say — before I do anything. A lot of what I write here is the work of taking the chair back from that second voice.</p>
-
-    <p>These days I build companies and write about building them. <strong>Makeshift</strong> is the digital agency I founded — Webflow, AI, and automation for B2B teams across the Nordics and UK. <strong>Zipli</strong> is a food-rescue platform where I'm CTO, in pilots with Sodexo and the City of Helsinki. <strong>Flowtusk</strong> is an automation tool for Webflow. Earlier I co-built Krusti Foodkits, and worked at TietoEVRY and Nordea.</p>
-
-    <p>But the projects aren't the point of this site. The writing is. I care most about the people I build with, about shipping instead of polishing, and about the strange double-vision that comes from running two cultures at once. If any of that resonates, start with <a href="/essays/we-used-to-just-move">We Used to Just Move</a> or <a href="/essays/sent-not-saved">Sent, Not Saved</a>.</p>
-
-    <p>Find me on <a href="https://www.linkedin.com/in/hasan-shahriar-rhiday/">LinkedIn</a> or <a href="https://github.com/rhiday">GitHub</a>, or read the <a href="/">essays</a>.</p>
-  </article>
+  <section class="section shell principles">
+    <p class="eyebrow">A few operating beliefs</p>
+    <div class="principle-grid">
+      <div><span>01</span><h3>Sent, not saved.</h3><p>The only useful information arrives after the work meets the world.</p></div>
+      <div><span>02</span><h3>People are infrastructure.</h3><p>The teams that survive the difficult middle are rarely assembled by résumé alone.</p></div>
+      <div><span>03</span><h3>Closeness is a moat.</h3><p>When building gets cheap, understanding the real operating context becomes more valuable.</p></div>
+      <div><span>04</span><h3>Humour is the way.</h3><p>If the explanation cannot breathe, the thinking probably cannot either.</p></div>
+    </div>
+  </section>
 </Base>
