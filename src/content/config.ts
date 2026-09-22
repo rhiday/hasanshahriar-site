@@ -8,6 +8,8 @@ const essays = defineCollection({
     pillar: z.enum(['outsiders-edge', 'sent-not-saved', 'ai-era']),
     pubDate: z.coerce.date(),
     draft: z.boolean().default(false),
+    cover: z.string().optional(),
+    coverAlt: z.string().optional(),
   }),
 });
 

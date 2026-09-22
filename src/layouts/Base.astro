@@ -30,7 +30,7 @@ const breadcrumbItems = pathSegments.map((segment, index) => ({
   '@type': 'ListItem',
   position: index + 2,
   name: index === pathSegments.length - 1
-    ? title.split(' — ')[0]
+    ? title.split(' | ')[0]
     : breadcrumbLabels[segment] || segment.replaceAll('-', ' '),
   item: new URL(`/${pathSegments.slice(0, index + 1).join('/')}/`, Astro.site).href,
 }));
@@ -41,7 +41,7 @@ const graph = [
     name: 'Hasan Shahriar',
     url: siteUrl,
     email: 'mailto:hasan@hasanshahriar.com',
-    jobTitle: 'Product builder and founder',
+    jobTitle: 'Co-founder and CTO, Zipli',
     homeLocation: {
       '@type': 'Place',
       name: 'Helsinki, Finland',
@@ -143,8 +143,8 @@ import '../styles/global.css';
         </a>
       ))}
     </nav>
-    <a class="header-cta" href="mailto:hasan@hasanshahriar.com">
-      <i aria-hidden="true"></i> Available for the right role
+    <a class="header-cta" href="/work/zipli">
+      <i aria-hidden="true"></i> Building Zipli
     </a>
   </header>
 
